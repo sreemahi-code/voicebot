@@ -1,0 +1,72 @@
+Local terminal
+pip3 install pyttsx3     //downloads the python library which converts text to speech for mac
+
+
+In the context of the code snippet `engine = pt.init()`, `engine` is an object representing the text-to-speech engine initialized by the `pyttsx3` library. 
+
+When you call `pt.init()`, it creates and returns an instance of the text-to-speech engine, which you can then use to convert text into speech using methods provided by the `pyttsx3` library. This `engine` object allows you to control aspects of the speech synthesis, such as the speech rate, volume, and voice.
+
+
+rate=engine.getProperty('rate') 	//get the rate at which the voice talks
+engine.setProperty('rate', 200)	//changes the rate variable to the new rate now 200
+
+voices= engine.getProperty('voices')              //get the voices property to a variable
+engine.setProperty('voice',voices[1].id)	//changes the voice to the first in the array list in this it is a ladies voice
+
+'''print(voices)
+print(rate)''' 
+def speak(text):
+    engine.say(text)
+    engine.runAndWait()
+
+r = sr.Recognizer()
+
+speak("hello babe i am your voice assistant! How are you? ")
+with sr.Microphone() as source: 	//Microphone from the speech_regnition module takes the voice
+    r.energy_threshold=10000 		//increases the threshold to help listen minute voice
+    r.adjust_for_ambient_noise(source,1.2)	//cancel the outer voice
+    print("listening...")
+    audio = r.listen(source)
+    text = r.recognize_google(audio)
+    print(text) 
+
+ 
+
+Speech Recognition    pip install speechrecognition
+			import speech_recognition as sr
+Recognizer→ how to recognize the audio and what to do with it
+
+Selenium WebDriver
+Automating web browsers are those which we can do some ‘work’ on the websites to do something such as getting information or like just going to that site WITHOUT mutual intervention
+
+from selenium  import webdriver 	  //webdriver is teh one that takes info from web browser
+
+class infow():
+    def __init__(self):
+        self.driver = webdriver.Chrome(executable_path="C:/Users/srira/Anaconda3/Lib/site-packages/selenium/webdriver/chrome/chromedriver.exe")
+   
+    def get_info(self, query):
+        self.query = query
+        self.driver.get("https://www.wikipedia.org/")
+        search = self.driver.find_element_by_xpath('//*[@id="searchInput"]') //xpath is from Input id in the wikipedia
+        search.click()
+        search.send_keys(query)
+        enter = self.driver.find_element_by_xpath('//*[@id="search-form"]/fieldset/button')// xpath from the button element from the click
+        enter.click()
+assist = infow()
+assist.get_info("neutron")
+
+Class infow has the function init (initialization)
+Webdriver.chrome is the function used to make the path from the comp to open chrome
+
+Get info function is used to get the information required from chrome 
+Xpath is a part of XML(used to store and carry data similar to html has tags)
+Xpath is used to have path expressions in a xml document
+
+Q) From the vids, get the first 2 lines read out by the comp of the first paragraph
+
+For copying Xpath = Inspect → Copy → Copy Xpath
+ The same get ingo //*[@id="mw-content-text"]/div[1]/p[3]
+i=1
+For i in text:	
+	speak(Text)
