@@ -1,16 +1,14 @@
 from selenium import webdriver 
 
-class infow():
+class info():
     def __init__(self):
-        self.driver = webdriver.Chrome(executable_path="C:/Users/srira/Anaconda3/Lib/site-packages/selenium/webdriver/chrome/chromedriver.exe") 
+        self.driver = webdriver.Chrome(executable_path="C://Users//srira//Downloads//chromedriver-win32//chromedriver-win32//chromedriver.exe")
     
     def get_info(self, query):
         self.query = query
         self.driver.get("https://www.wikipedia.org/")
-        search = self.driver.find_element_by_xpath('//*[id="searchInput"]')
+        search = self.driver.find_element_by_xpath(By.XPATH,'//*[@id="searchInput"]')
         search.click()
         search.send_keys(query)
-        enter = self.driver.find_element_by_xpath('//*[id="searchInput"]/fieldset/button')
+        enter = self.driver.find_element_by_xpath(By.XPATH,'//*[@id="search-form"]/fieldset/button')
         enter.click()
-assist = infow()
-assist.get_info("Tunisha Sharma") 
